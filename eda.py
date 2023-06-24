@@ -1,6 +1,7 @@
 # Explorative data analysis
 ## Import libraries
 import pandas as pd
+import matplotlib.pyplot as plt
 
 ## Read data
 data = pd.read_csv('interview_signup.csv.gz', compression='gzip')
@@ -15,7 +16,6 @@ print(data.head())
 data['postcode'] = data['postcode'].astype('str')
 non_digit_values = data[data['postcode'].str.contains('[a-zA-Z]')]
 print(non_digit_values)
-
 
 ## Detect length of postcode entries
 data['postcode'] = data['postcode'].str.replace(r'.0', '')
@@ -41,3 +41,7 @@ post_bund = data.loc[:, ['postcode', 'bundesland']]
 post_bund_unq = post_bund.drop_duplicates()
 post_bund_unq['cnt'] = post_bund_unq.groupby(['postcode'])['postcode'].transform('count')
 print(post_bund_unq)
+
+# Plot distribution of total_bonus
+plt.hist(data['total_bonus'], bins=10)
+plt.show()
