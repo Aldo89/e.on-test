@@ -13,5 +13,5 @@ processor.preprocess_data()
 preprocessed_data = processor.data
 
 # Perform further operations on preprocessed_data as needed
-# For example, you can print the first few rows:
+# Print data:
 print(preprocessed_data)

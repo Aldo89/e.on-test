@@ -8,7 +8,6 @@ class DataProcessor:
         self.convert_to_date()
         self.remove_postcode_decimal()
         self.remove_non_digit_postcode_entries()
-        self.drop_missing_rows()
         self.fill_postcode_length()
         self.drop_duplicate_combinations()
         self.fill_missing_bundesland()
@@ -21,12 +20,7 @@ class DataProcessor:
         self.data['postcode'] = self.data['postcode'].str.replace(r'.0', '')
 
     def remove_non_digit_postcode_entries(self):
-        self.data['postcode_is_digit'] = list(map(lambda x: x.isdigit(), self.data['postcode']))
-        self.data.loc[self.data['postcode_is_digit'] == False, 'postcode'] = None
-        self.data = self.data.drop(columns='postcode_is_digit')
-
-    def drop_missing_rows(self):
-        self.data = self.data.drop(self.data[(self.data['postcode'].isnull()) & (self.data['bundesland'].isnull())].index)
+        self.data['postcode'] = self.data['postcode'].str.replace(r'\D', '', regex=True)
 
     def fill_postcode_length(self):
         self.data['postcode'] = self.data.postcode.astype(str).str.pad(5, fillchar='0')
@@ -44,6 +38,3 @@ class DataProcessor:
         self.data['key'] = self.data['postcode']
         self.data = self.data.groupby('key').fillna(method="ffill")
         return(self.data)
-
-
-
