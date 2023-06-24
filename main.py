@@ -2,7 +2,7 @@
 import pandas as pd
 
 # Read data
-data = pd.read_csv('data/interview_signup.csv.gz', compression='gzip')
+data = pd.read_csv('interview_signup.csv.gz', compression='gzip')
 
 # Date is a charecter and we coescre it to date.
 data['order_date'] = pd.to_datetime(data['order_date'])
