@@ -1,6 +1,12 @@
 # e.on
 
-Issues in the dataset:
+## Setup:
+
+1. Python version 3.10
+2. PyCharm Community Edition 2023.1.3
+
+
+## Issues in the dataset:
 
 1. The column order_date is a charcter column so I converted it to datetime.
 2. In the column postcode the values are not just 5 digits.

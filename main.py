@@ -15,7 +15,6 @@ data['postcode'] = data['postcode'].str.replace(r'.0','')
 # non-digit values.
 data['postcode_is_digit'] = list(map(lambda x: x.isdigit(), data['postcode']))
 cnt_false = data['postcode_is_digit'].value_counts()
-
 data.loc[data['postcode_is_digit'] == False, 'postcode'] = None
 
 # Remove column postcode_is_digit
