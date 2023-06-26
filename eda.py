@@ -42,6 +42,9 @@ post_bund_unq = post_bund.drop_duplicates()
 post_bund_unq['cnt'] = post_bund_unq.groupby(['postcode'])['postcode'].transform('count')
 print(post_bund_unq)
 
+# Get unique values of column original_product_name
+print(data['original_product_name'].unique())
+
 # Plot distribution of total_bonus
 plt.hist(data['total_bonus'], bins=10)
 plt.show()

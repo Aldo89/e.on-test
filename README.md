@@ -7,7 +7,7 @@
 
 
 ## Issues in the dataset:
-
+1. In column `original_product_name` we have multiple entries that unusual values. 
 1. The column `order_date` is a charcter column so I converted it to datetime.
 2. In the column `postcode` the values are not just 5 digits.
    1. The strings appear to have float values like 74235.0 -> I replaced '.0' with ''
